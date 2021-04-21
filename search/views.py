@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 import os
 import pandas as pd
 import requests
@@ -9,10 +10,10 @@ from moviepy.editor import VideoFileClip
 league_url = 'https://fantasy.premierleague.com/api/leagues-classic/{league_id}/standings'
 manager_url = 'https://fantasy.premierleague.com/api/entry/{manager_id}/history/'
 
-#url code
+
+# url code
 def home(request):
     return render(request, "search/home.html")
-
 
 def search(request):
     return render(request, "search/search.html")
@@ -20,11 +21,11 @@ def search(request):
 
 # FPL GIF Code
 def get_league_id(Mini_league_url):
-
-    league_id = Mini_league_url[Mini_league_url.find('leagues/')+8:]
+    league_id = Mini_league_url[Mini_league_url.find('leagues/') + 8:]
     league_id = league_id[:league_id.find('/')]
 
     return league_id
+
 
 def league_data(league_id, league_url, phase_number=1):
     query_string = '?phase={phase_number}'.format(phase_number=phase_number)
@@ -71,8 +72,8 @@ def bar_race(data, filename, league_name="Your League"):
     clip.write_gif('{filename}_League_BarChartRace.gif'.format(filename=filename))
 
 
-def main(request):
-    League_id = get_league_id(request.GET['fulltext'])
+def search_result(request):
+    League_id = get_league_id(request.POST['league_url'])
 
     League_Data, League_name, League_start = league_data(League_id, league_url.format(
         league_id=League_id))  # this will be the name the data in saved under
@@ -97,6 +98,10 @@ def main(request):
 
     full_league_total_points = full_league_total_points.T  # Transpose the data
 
-    bar_race(full_league_total_points.T, League_name, League_name)
+    # bar_race(full_league_total_points.T, League_name, League_name)
+    mp4_file = bcr.bar_chart_race(df=full_league_total_points.T, scale='linear',
+                                  title='{league} - FPL Points by GameWeek'.format(league=League_name))
+   # clip = (VideoFileClip(mp4_file))
+   # gif_file = clip.write_gif()
 
-    return render(request, "search/search.html", {'gif_file':})
+    return render(request, "search/search_result.html", {'gif_file':mp4_file})
