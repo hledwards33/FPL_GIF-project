@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('search/', include('search.urls')),
     path('form/', include('form.urls')),
+    path('charts/', include('charts.urls')),
 ]
