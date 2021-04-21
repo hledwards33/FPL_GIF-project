@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'charts.apps.ChartsConfig',
+    'form.apps.FormConfig',
     'search.apps.SearchConfig',
     'django.contrib.admin',
     'django.contrib.auth',
