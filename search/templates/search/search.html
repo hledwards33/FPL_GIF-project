@@ -14,8 +14,9 @@
         <br />
         <h1>Mini League Race</h1>
         <br/>
-        <form class="d-flex">
-          <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL" aria-label="Search">
+        <form class="d-flex" method="POST" action="{% url 'barrace'%}">
+          {% csrf_token %}
+          <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL" aria-label="Search" name="league_url">
           <button class="btn btn-outline-success" type="submit">Create</button>
         </form>
       </div>
