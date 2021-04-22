@@ -63,15 +63,6 @@ def manager_info_points(manager_name, manager_id, manager_url):
     return data
 
 
-def bar_race(data, filename, league_name="Your League"):
-    bcr.bar_chart_race(df=data, filename='{filename}_League_BarChartRace.mp4'.format(filename=filename),
-                       scale='linear', title='{league} - FPL Points by GameWeek'.format(league=league_name))
-
-    clip = (VideoFileClip(os.path.join(os.getcwd(),
-                                       '{filename}_League_BarChartRace.mp4'.format(filename=filename))))
-    clip.write_gif('{filename}_League_BarChartRace.gif'.format(filename=filename))
-
-
 def search_result(request):
     League_id = get_league_id(request.POST['league_url'])
 
@@ -101,7 +92,5 @@ def search_result(request):
     # bar_race(full_league_total_points.T, League_name, League_name)
     mp4_file = bcr.bar_chart_race(df=full_league_total_points.T, scale='linear',
                                   title='{league} - FPL Points by GameWeek'.format(league=League_name))
-   # clip = (VideoFileClip(mp4_file))
-   # gif_file = clip.write_gif()
 
     return render(request, "search/search_result.html", {'gif_file':mp4_file})
