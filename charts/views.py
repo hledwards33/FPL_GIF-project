@@ -7,7 +7,6 @@ import itertools
 import plotly.graph_objects as go
 import plotly.offline
 
-Mini_League_url = "https://fantasy.premierleague.com/leagues/1570770/standings/c"
 league_url = 'https://fantasy.premierleague.com/api/leagues-classic/{league_id}/standings'
 manager_url = 'https://fantasy.premierleague.com/api/entry/{manager_id}/history/'
 team_url = "https://fantasy.premierleague.com/api/entry/{manager_id}/event/{GW}/picks/"
@@ -27,7 +26,7 @@ def get_league_id(Mini_league_url):
     return league_id
 
 
-def league_data(league_id, league_url, phase_number=1):
+def league_data(league_url, phase_number=1):
     query_string = '?phase={phase_number}'.format(phase_number=phase_number)
     league_url = league_url + '/' + query_string
 
@@ -66,9 +65,9 @@ def get_manager_picks(manager_id, gameweek):
 
 
 def graphs_result(request):
-    league_id = get_league_id(Mini_League_url)
+    league_id = get_league_id(request.POST['league_url'])
 
-    league_Data, league_name, league_start = league_data(league_id, league_url.format(league_id=league_id))
+    league_Data, league_name, league_start = league_data(league_url.format(league_id=league_id))
 
     manager_ids = league_list(league_Data)
 
