@@ -1,5 +1,49 @@
-graph results
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
-<div style="width:1000;height:1000">
-{{ top_10|safe }}
-</div>
+<main>
+
+    <section class="py-5 text-center container image-center">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'FPL_Logo.png' %}" width=400/>
+                </a>
+                <h1 class="fw-light">Fantasy Premier League Analytics</h1>
+                <p class="lead text-muted">Beat the competition with data driven insights.</p>
+                <hr/>
+                <br/>
+                <h1>Mini League Race</h1>
+                <br/>
+                <form class="d-flex" method="POST" action="{% url 'graphs_result'%}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL"
+                           aria-label="Search" name="league_url">
+                    <button class="btn btn-outline-success" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 text-center container image-center">
+        <h3 class="fw-light">Top player selections for {{league_name}} based on gameweek {{gameweek}}.</h3>
+        <br />
+        <div style="width:1000;height:1000">
+        {{ top_10|safe }}
+        </div>
+        <br/>
+        <h3 class="fw-light">Differential player selections for {{league_name}} based on gameweek {{gameweek}}.</h3>
+        <br />
+        <br/>
+        <div style="width:1000;height:1000">
+        {{ bottom_10|safe }}
+        </div>
+
+
+    </section>
+
+</main>
+
+
+{% endblock %}

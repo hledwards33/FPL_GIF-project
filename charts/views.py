@@ -115,7 +115,16 @@ def graphs_result(request):
 
     labels = list(players_top10.keys())
     values = list(players_top10.values())
-    fig_top_10 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.25)])
+    fig_top_10 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.25, textposition='outside', textinfo='percent+label')])
+    fig_top_10.layout.update(showlegend=False)
+    fig_top_10.update_layout(margin=dict(t=0, b=0, l=0, r=0))
     fig_top_10_html = plotly.offline.plot(fig_top_10, auto_open=False, output_type="div")
 
-    return render(request, "charts/graphs_result.html", {'top_10':fig_top_10_html})
+    labels = list(players_bottom10.keys())
+    values = list(players_bottom10.values())
+    fig_bottom_10 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.25, textposition='outside', textinfo='percent+label')])
+    fig_bottom_10.layout.update(showlegend=False)
+    fig_bottom_10.update_layout(margin=dict(t=0, b=0, l=0, r=0))
+    fig_bottom_10_html = plotly.offline.plot(fig_bottom_10, auto_open=False, output_type="div")
+
+    return render(request, "charts/graphs_result.html", {'top_10':fig_top_10_html, 'bottom_10':fig_bottom_10_html, 'league_name':league_name, 'gameweek':str(gameweek)})
