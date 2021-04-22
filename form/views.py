@@ -26,7 +26,8 @@ def get_player_data():
     player_dict = {}
     for i in range(11):
         index = list(all_data.keys())[i]
-        player_dict[i] = {'form': elements[index]['form'],
+        player_dict[i] = {
+                          'form': elements[index]['form'],
                           'name': elements[index]['first_name'] + " " + elements[index]['second_name'],
                           'news': elements[index]['news'],
                           'dreamteam apps': elements[index]['dreamteam_count'],
@@ -42,4 +43,4 @@ def get_player_data():
                           'clean sheets': elements[index]['clean_sheets'],
                           'cost': elements[index]['now_cost'] / 10
                           }
-        return player_dict
+    return player_dict
