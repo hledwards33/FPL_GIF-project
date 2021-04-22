@@ -3,8 +3,9 @@ import pandas as pd
 import requests
 import json
 from collections import Counter
-import matplotlib.pyplot as plt
 import itertools
+import plotly.graph_objects as go
+import plotly.offline
 
 Mini_League_url = "https://fantasy.premierleague.com/leagues/1570770/standings/c"
 league_url = 'https://fantasy.premierleague.com/api/leagues-classic/{league_id}/standings'
@@ -113,4 +114,9 @@ def graphs_result(request):
         players_top10 = player_freq
         players_bottom10 = player_freq
 
-    return render(request, "charts/graphs_result.html")
+    labels = list(players_top10.keys())
+    values = list(players_top10.values())
+    fig_top_10 = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.25)])
+    fig_top_10_html = plotly.offline.plot(fig_top_10, auto_open=False, output_type="div")
+
+    return render(request, "charts/graphs_result.html", {'top_10':fig_top_10_html})
