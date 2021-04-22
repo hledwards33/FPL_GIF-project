@@ -4,25 +4,29 @@
 
 <main>
 
-  <section class="py-5 text-center container image-center">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <img src="{% static 'FPL_Logo.png' %}" width=400 />
-        <h1 class="fw-light">Fantasy Premier League Analytics</h1>
-        <p class="lead text-muted">Beat the competition with data driven insights.</p>
-        <hr />
-        <br />
-        <h1>Mini League Race</h1>
-        <br/>
-        <form class="d-flex" method="POST" action="{% url 'search_result'%}">
-          {% csrf_token %}
-          <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL" aria-label="Search" name="league_url">
-          <button class="btn btn-outline-success" type="submit">Create</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
+    <section class="py-5 text-center container image-center">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'FPL_Logo.png' %}" width=400/>
+                </a>
+                <h1 class="fw-light">Fantasy Premier League Analytics</h1>
+                <p class="lead text-muted">Beat the competition with data driven insights.</p>
+                <hr/>
+                <br/>
+                <h1>Mini League Race</h1>
+                <br/>
+                <form class="d-flex" method="POST" action="{% url 'search_result'%}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL"
+                           aria-label="Search" name="league_url">
+                    <button class="btn btn-outline-success" type="submit">Create</button>
+                </form>
+                <br />
+                <p class="lead text-muted">Graphic may take a moment to create.</p>
+            </div>
+        </div>
+    </section>
 
 
 </main>

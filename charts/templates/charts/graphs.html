@@ -4,72 +4,80 @@
 
 <main>
 
-  <section class="py-5 text-center container image-center">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <img src="{% static 'FPL_Logo.png' %}" width=400 />
-        <h1 class="fw-light">Fantasy Premier League Analytics</h1>
-        <p class="lead text-muted">Beat the competition with data driven insights.</p>
-        <hr />
-        <br />
-        <h1>Mini League Analysis</h1>
-        <br/>
-        <form class="d-flex">
-          <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Create</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    <section class="py-5 text-center container image-center">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'FPL_Logo.png' %}" width=400/>
+                </a>
+                <h1 class="fw-light">Fantasy Premier League Analytics</h1>
+                <p class="lead text-muted">Beat the competition with data driven insights.</p>
+                <hr/>
+                <br/>
+                <h1>Mini League Analysis</h1>
+                <br/>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="Search" placeholder="Enter Mini League URL"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Create</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+    <div class="album py-5 bg-light">
+        <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-        <a href="{% url 'barrace' %}">
-          <div class="col">
-            <div class="card shadow-sm">
-              <img src="{% static 'FPL_Logo.png' %}" height=320 />
-              <div class="card-body">
-                <h5>Mini League Bar Chart Race</h5>
-                <p class="card-text">Create a racing bar chart representing the evolution of your FPL Mini League throughout the course of the season. Download as .GIF or .MP4 to share with friends/rivals. </p>
-                <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'barrace' %}">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="{% static 'FPL_Logo.png' %}" height=320/>
+                            <div class="card-body">
+                                <h5>Mini League Bar Chart Race</h5>
+                                <p class="card-text">Create a racing bar chart representing the evolution of your FPL
+                                    Mini League throughout the course of the season. Download as .GIF or .MP4 to share
+                                    with friends/rivals. </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{% static 'football_players.jpg' %}" height=320/>
+                        <div class="card-body">
+                            <h5>Player Form</h5>
+                            <p class="card-text">View the current most in form players as of the last Gameweek and
+                                explore their statics, including goals, assists, clean sheets, bonus points and
+                                more. </p>
+                            <br/>
+                            <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </a>
 
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="{% static 'football_players.jpg' %}" height=320 />
-            <div class="card-body">
-              <h5>Player Form</h5>
-              <p class="card-text">View the current most in form players as of the last Gameweek and explore their statics, including goals, assists, clean sheets, bonus points and more. </p>
-              <br />
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{% static 'pie_chart.png' %}" height=320/>
+                        <div class="card-body">
+                            <h5>Mini League Analysis</h5>
+                            <p class="card-text">View which FPL players in your league have the highest and lowest
+                                percentage ownership and find where you can gain the advantage.</p>
+                            <br/>
+                            <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
         </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="{% static 'pie_chart.png' %}" height=320 />
-            <div class="card-body">
-              <h5>Mini League Analysis</h5>
-              <p class="card-text">View which FPL players in your league have the highest and lowest percentage ownership and find where you can gain the advantage.</p>
-              <br />
-              <div class="d-flex justify-content-between align-items-center">
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
 
 </main>
 
